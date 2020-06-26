@@ -14,6 +14,8 @@ const {
 const API_BASE = 'https://api.github.com/gists/';
 const username = 'black'; 
 
+console.log("ENF - ",gistId, githubToken);
+
 const octokit = new Octokit({
     type: 'token',
     auth: `token ${githubToken}`
