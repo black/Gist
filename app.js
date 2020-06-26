@@ -12,14 +12,13 @@ const {
     GH_TOKEN: githubToken,
 } = process.env;
 const API_BASE = 'https://api.github.com/gists/';
-const username = 'black';
-const gistID = gistId;
+const username = 'black'; 
 
 const octokit = new Octokit({
+    type: 'token',
     auth: `token ${githubToken}`
 });
-
-
+ 
 function getDate() {
     // current timestamp in milliseconds
     let ts = Date.now();
@@ -36,7 +35,7 @@ function getDate() {
 async function updateGist(stats) {
 
     await octokit.gists.update({
-        gist_id: gistID,
+        gist_id: gistId,
         "description": "Live Data",
         "files": {
             "Live": {
@@ -44,7 +43,7 @@ async function updateGist(stats) {
             }
         }
     }).then(res => {
-        console.log(res.data);
+        console.log(res);
     });
 } 
 
