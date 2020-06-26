@@ -20,17 +20,15 @@ const octokit = new Octokit({
 });
 
 octokit.gists.update({
-    octokit.gists.update({
-        gist_id: gistID,
-        "description": "Live Data",
-        "files": {
-            "Live": {
-                "content": "Good Evening Guys... 🌝 \nI am a running this script 🌝 \n" + getDate() + "\nto live update this section. 🌝 \nIsn't it awesome?"
-            }
+    gist_id: gistID,
+    "description": "Live Data",
+    "files": {
+        "Live": {
+            "content": "Good Evening Guys... 🌝 \nI am a running this script 🌝 \n" + getDate() + "\nto live update this section. 🌝 \nIsn't it awesome?"
         }
-    }).then(res => {
-        console.log(res.data);
-    });
+    }
+}).then(res => {
+    console.log(res.data);
 });
 
 function getDate() {
