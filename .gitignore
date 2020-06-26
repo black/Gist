@@ -1,13 +1,4 @@
 
 node_modules
 key.json
-.env
-node_modules/.bin/semver
-node_modules/.bin/semver.ps1
-node_modules/.bin/which
-node_modules/.bin/which.ps1
-node_modules/@octokit/auth-token/dist-node/index.js
-node_modules/@octokit/auth-token/dist-src/auth.js
-node_modules/@octokit/auth-token/dist-src/hook.js
-node_modules/@octokit/auth-token/dist-src/index.js
-node_modules/@octokit/auth-token/dist-src/with-authorization-prefix.js
+.env 
