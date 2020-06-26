@@ -1,26 +1,29 @@
-// const express = require('express'),\
 require("dotenv").config();
-const { Octokit } = require("@octokit/rest");
-//     app = express(); 
-
-// let server = app.listen(4076, () => {
-//     console.log("Gist...4076");
-// });
+const { Octokit } = require("@octokit/rest"); 
 
 const {
     GIST_ID: gistId,
     GH_TOKEN: githubToken,
 } = process.env;
-const API_BASE = 'https://api.github.com/gists/';
-const username = 'black'; 
 
-console.log("ENF - ",gistId, githubToken);
-
+console.log("Running...", `token ${githubToken}`);
 const octokit = new Octokit({
-    type: 'token',
-    auth: `token ${githubToken}`
+   auth: `token ${githubToken}`
 });
- 
+
+
+octokit.gists.update({
+    gist_id: gistId,
+    "description": "Live Data",
+    "files": {
+        "Live": {
+            "content": "Good Evening Guys... 🌝 \nI am a running this script 🌝 \n" + getDate() + "\nto live update this section. 🌝 \nIsn't it awesome?"
+        }
+    }
+}).then(res => {
+    console.log("updated...");
+});
+
 function getDate() {
     // current timestamp in milliseconds
     let ts = Date.now();
@@ -30,25 +33,5 @@ function getDate() {
     let month = date_ob.getMonth() + 1;
     let year = date_ob.getFullYear();
 
-    // prints date & time in YYYY-MM-DD format
     return year + "-" + month + "-" + date;
 }
-
-async function updateGist(stats) {
-
-    await octokit.gists.update({
-        gist_id: gistId,
-        "description": "Live Data",
-        "files": {
-            "Live": {
-                "content": "Good Evening Guys... 🌝 \nI am a running this script 🌝 \n" + getDate() + "\nto live update this section. 🌝 \nIsn't it awesome?"
-            }
-        }
-    }).then(res => {
-        console.log(res);
-    });
-} 
-
-(async () => {
-  await updateGist();
-})();
