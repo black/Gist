@@ -1,7 +1,6 @@
 // const express = require('express'),\
 require("dotenv").config();
-const { Octokit } = require("@octokit/rest"),
-    schedule = require('node-schedule');
+const { Octokit } = require("@octokit/rest");
 //     app = express(); 
 
 // let server = app.listen(4076, () => {
@@ -20,13 +19,7 @@ const octokit = new Octokit({
     auth: `token ${githubToken}`
 });
 
-
-var rule = new schedule.RecurrenceRule();
-//rule.minute = 40;
-rule.second = 10;
-var jj = schedule.scheduleJob(rule, function(res) {
-    console.log("execute jj", res); 
-    octokit.gists.update({
+octokit.gists.update({
         gist_id: gistID,
         "description": "Live Data",
         "files": {
@@ -37,4 +30,3 @@ var jj = schedule.scheduleJob(rule, function(res) {
     }).then(res => {
         console.log(res.data);
     });
-});
