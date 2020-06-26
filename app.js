@@ -12,15 +12,14 @@ const {
     GH_TOKEN: githubToken,
 } = process.env;
 const API_BASE = 'https://api.github.com/gists/';
-const username = 'black';
-const gistID = gistId;
+const username = 'black'; 
 
 const octokit = new Octokit({
     auth: `token ${githubToken}`
 });
 
 octokit.gists.update({
-    gist_id: gistID,
+    gist_id: gistId,
     "description": "Live Data",
     "files": {
         "Live": {
