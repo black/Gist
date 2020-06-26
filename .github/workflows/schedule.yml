@@ -1,0 +1,19 @@
+name: Gist Bot
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  push:
+    branches: master
+
+jobs:
+  update-gist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Update gist
+        uses: black/gist@master
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID }} 
