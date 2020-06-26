@@ -12,23 +12,30 @@ const {
     GH_TOKEN: githubToken,
 } = process.env;
 const API_BASE = 'https://api.github.com/gists/';
-const username = 'black'; 
+const username = 'black';
+const gistID = gistId;
 
 const octokit = new Octokit({
     auth: `token ${githubToken}`
 });
+ 
 
-octokit.gists.update({
-    gist_id: gistId,
-    "description": "Live Data",
-    "files": {
-        "Live": {
-            "content": "Good Evening Guys... 🌝 \nI am a running this script 🌝 \n" + getDate() + "\nto live update this section. 🌝 \nIsn't it awesome?"
+try {
+    octokit.gists.update({
+        gist_id: gistId,
+        "description": "Live Data",
+        "files": {
+            "Live": {
+                "content": "Good Evening Guys... 🌝 \nI am a running this script 🌝 \n" + getDate() + "\nto live update this section. 🌝 \nIsn't it awesome?"
+            }
         }
-    }
-}).then(res => {
-    console.log(res.data);
-});
+    }).then(res => {
+        console.log(res.data);
+    });
+} catch (error) {
+    console.error(`Unable to update gist\n${error}`);
+}
+ 
 
 function getDate() {
     // current timestamp in milliseconds
@@ -41,4 +48,4 @@ function getDate() {
 
     // prints date & time in YYYY-MM-DD format
     return year + "-" + month + "-" + date;
-}
+} 
